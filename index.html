@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Easy Transport — Dubai Academic City Dashboard</title>
+<link rel="stylesheet" href="assets/style.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ── Sidebar ─────────────────────────────────────────── -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-wrap">
+      <div class="logo-icon">🚌</div>
+      <div>
+        <div class="logo-name">Easy Transport</div>
+        <div class="logo-sub">Dubai Academic City</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="sidenav">
+    <button class="nav-item active" data-page="overview">
+      <span class="nav-icon">📊</span><span class="nav-label">Overview</span>
+    </button>
+    <button class="nav-item" data-page="demographics">
+      <span class="nav-icon">👥</span><span class="nav-label">Demographics</span>
+    </button>
+    <button class="nav-item" data-page="transport">
+      <span class="nav-icon">🛺</span><span class="nav-label">Transport Patterns</span>
+    </button>
+    <button class="nav-item" data-page="pain">
+      <span class="nav-icon">⚠️</span><span class="nav-label">Pain Points</span>
+    </button>
+    <button class="nav-item" data-page="features">
+      <span class="nav-icon">✨</span><span class="nav-label">Features & Preferences</span>
+    </button>
+    <button class="nav-item" data-page="digital">
+      <span class="nav-icon">📱</span><span class="nav-label">Digital Behaviour</span>
+    </button>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="badge-row">
+      <span class="badge badge-blue">400 respondents</span>
+      <span class="badge badge-green">61 variables</span>
+    </div>
+    <div class="sidebar-note">Synthetic dataset · PBL Project</div>
+  </div>
+</aside>
+
+<!-- ── Main ────────────────────────────────────────────── -->
+<div class="main-wrap">
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="menu-btn" id="menu-btn" aria-label="Toggle sidebar">☰</button>
+    <div class="topbar-title" id="page-title">Overview</div>
+    <div class="topbar-right">
+      <span class="topbar-badge">Live Dashboard</span>
+    </div>
+  </header>
+
+  <!-- Pages -->
+  <main class="main-content">
+
+    <!-- ══ OVERVIEW ══════════════════════════════════════ -->
+    <section class="page active" id="page-overview">
+      <div class="kpi-grid" id="kpi-row"></div>
+
+      <div class="chart-grid-2">
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">App interest split</span>
+            <span class="card-tag">Classification target</span>
+          </div>
+          <div class="legend" id="leg-interest"></div>
+          <div class="ch-wrap h220"><canvas id="c-interest" aria-label="Doughnut: Maybe 225, Yes 95, No 80"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">Interest by university</span>
+          </div>
+          <div class="legend" id="leg-uni"></div>
+          <div class="ch-wrap h220"><canvas id="c-int-uni" aria-label="Grouped bar chart of interest by university"></canvas></div>
+        </div>
+      </div>
+
+      <div class="chart-grid-3">
+        <div class="card">
+          <div class="card-head"><span class="card-title">Transport satisfaction</span></div>
+          <div class="ch-wrap h170"><canvas id="c-sat" aria-label="Bar chart of satisfaction 1-5"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Monthly spend (AED)</span></div>
+          <div class="ch-wrap h170"><canvas id="c-spend-b" aria-label="Spend distribution"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Commute time (min)</span></div>
+          <div class="ch-wrap h170"><canvas id="c-comm-b" aria-label="Commute time distribution"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ DEMOGRAPHICS ══════════════════════════════════ -->
+    <section class="page" id="page-demographics">
+      <div class="chart-grid-2">
+        <div class="card">
+          <div class="card-head"><span class="card-title">Gender</span></div>
+          <div class="legend" id="leg-gender"></div>
+          <div class="ch-wrap h200"><canvas id="c-gender" aria-label="Gender doughnut"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Level of study</span></div>
+          <div class="legend" id="leg-level"></div>
+          <div class="ch-wrap h200"><canvas id="c-level" aria-label="Study level pie"></canvas></div>
+        </div>
+      </div>
+      <div class="chart-grid-2">
+        <div class="card">
+          <div class="card-head"><span class="card-title">University</span></div>
+          <div class="ch-wrap h220"><canvas id="c-uni" aria-label="University bar chart"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Accommodation area</span></div>
+          <div class="ch-wrap h220"><canvas id="c-accom" aria-label="Accommodation bar chart"></canvas></div>
+        </div>
+      </div>
+      <div class="chart-grid-1">
+        <div class="card">
+          <div class="card-head"><span class="card-title">Nationality region</span></div>
+          <div class="ch-wrap h180"><canvas id="c-nat" aria-label="Nationality horizontal bar"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ TRANSPORT PATTERNS ════════════════════════════ -->
+    <section class="page" id="page-transport">
+      <div class="chart-grid-2">
+        <div class="card">
+          <div class="card-head"><span class="card-title">Current transport mode</span></div>
+          <div class="ch-wrap h260"><canvas id="c-mode" aria-label="Transport mode horizontal bar"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Avg monthly spend by mode (AED)</span></div>
+          <div class="ch-wrap h260"><canvas id="c-mode-spend" aria-label="Spend per mode"></canvas></div>
+        </div>
+      </div>
+      <div class="chart-grid-2">
+        <div class="card">
+          <div class="card-head"><span class="card-title">Avg commute time by mode (min)</span></div>
+          <div class="ch-wrap h220"><canvas id="c-mode-time" aria-label="Commute time per mode bar chart"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Days on campus per week</span></div>
+          <div class="legend" id="leg-days"></div>
+          <div class="ch-wrap h220"><canvas id="c-days" aria-label="Days per week doughnut"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ PAIN POINTS ═══════════════════════════════════ -->
+    <section class="page" id="page-pain">
+      <div class="chart-grid-2">
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">Students affected by pain point</span>
+            <span class="card-tag">Out of 400</span>
+          </div>
+          <div class="ch-wrap h280"><canvas id="c-pain" aria-label="Pain point frequency horizontal bar"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Average severity (1–5 scale)</span></div>
+          <div class="ch-wrap h280"><canvas id="c-severity" aria-label="Severity radar chart"></canvas></div>
+        </div>
+      </div>
+      <div class="chart-grid-1">
+        <div class="card">
+          <div class="card-head"><span class="card-title">Pain point impact — ranked</span></div>
+          <div class="bar-list" id="pain-bars"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FEATURES & PREFERENCES ════════════════════════ -->
+    <section class="page" id="page-features">
+      <div class="chart-grid-2">
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">Feature interest</span>
+            <span class="card-tag">Association rule mining</span>
+          </div>
+          <div class="ch-wrap h300"><canvas id="c-feat" aria-label="Feature interest horizontal bar"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Preferred transport modes</span></div>
+          <div class="ch-wrap h300"><canvas id="c-pref" aria-label="Preferred modes bar chart"></canvas></div>
+        </div>
+      </div>
+      <div class="chart-grid-2">
+        <div class="card">
+          <div class="card-head"><span class="card-title">What factors matter most (avg 1–5)</span></div>
+          <div class="ch-wrap h240"><canvas id="c-imp" aria-label="Importance radar chart"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Max acceptable monthly budget (AED)</span></div>
+          <div class="ch-wrap h240"><canvas id="c-budget" aria-label="Budget distribution bar chart"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ DIGITAL BEHAVIOUR ═════════════════════════════ -->
+    <section class="page" id="page-digital">
+      <div class="chart-grid-2">
+        <div class="card">
+          <div class="card-head"><span class="card-title">Apps used for navigation / transport</span></div>
+          <div class="ch-wrap h260"><canvas id="c-apps" aria-label="App usage bar chart"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Ride-hailing frequency</span></div>
+          <div class="ch-wrap h260"><canvas id="c-rhail" aria-label="Ride-hailing frequency bar chart"></canvas></div>
+        </div>
+      </div>
+      <div class="chart-grid-1">
+        <div class="card">
+          <div class="card-head"><span class="card-title">App comfort score distribution (1–5)</span></div>
+          <div class="ch-wrap h180"><canvas id="c-comfort" aria-label="App comfort distribution bar chart"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    Easy Transport · Dubai Academic City · Data Analytics PBL Project · 400 synthetic survey respondents
+  </footer>
+</div>
+
+<script src="assets/charts.js"></script>
+</body>
+</html>
